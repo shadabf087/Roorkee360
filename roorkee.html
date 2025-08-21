@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roorkee360 | Instagram Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ======= BASE STYLES ======= */
+        :root {
+            --primary: #405de6;
+            --secondary: #5851db;
+            --accent: #e1306c;
+            --light: #f8f9fa;
+            --dark: #262626;
+            --text: #222;
+            --gray: #8e8e8e;
+            --white: #fff;
+            --shadow: 0 8px 32px rgba(64,93,230,0.08);
+            --transition: all 0.3s cubic-bezier(.4,0,.2,1);
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: var(--light);
+            color: var(--text);
+            margin: 0;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; height: auto; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ======= HEADER ======= */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 2rem;
+            letter-spacing: 1px;
+            color: var(--primary);
+            user-select: none;
+        }
+        .logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links li { list-style: none; }
+        .nav-links a {
+            font-size: 1.07rem;
+            font-weight: 600;
+            padding: .5rem 0;
+            position: relative;
+        }
+        .nav-links a:after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0; bottom: -4px;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 1px;
+            transition: width .3s;
+        }
+        .nav-links a:hover:after, .nav-links a.active:after { width: 100%; }
+        .mobile-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--primary);
+        }
+
+        /* ======= HERO ======= */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(120deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(120deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.25) 100%);
+            pointer-events: none;
+        }
+        .hero-content {
+            z-index: 1;
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto;
+            animation: fadeInUp .7s cubic-bezier(.4,0,.2,1);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 1.2rem;
+        }
+        .hero-title span { color: var(--accent); }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 2.2rem;
+            color: var(--gray);
+        }
+        .hero-buttons {
+            display: flex; gap: 1rem; justify-content: center;
+        }
+        .btn {
+            display: flex; align-items: center; gap: .5em;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--white);
+            padding: .85em 2.2em;
+            border-radius: 2em;
+            border: none;
+            font-weight: 700;
+            font-size: 1.07rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+        .btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 6px 24px rgba(64,93,230,0.18);}
+        .btn-instagram {
+            background: linear-gradient(90deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+        }
+
+        /* ======= SECTIONS ======= */
+        .section { padding: 80px 0 60px; }
+        .section-title {
+            text-align: center;
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            margin: 18px auto 0;
+            width: 70px; height: 4px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        /* ======= ABOUT ======= */
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .about-text {
+            flex: 1.1;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text);
+        }
+        .about-image {
+            flex: 1;
+            max-width: 400px;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        /* ======= INSTAGRAM FEED ======= */
+        .instagram-feed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.6rem;
+            margin-top: 2.2rem;
+        }
+        .insta-item {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            background: var(--white);
+        }
+        .insta-item img { height: 220px; object-fit: cover; }
+        .insta-item:hover { transform: scale(1.04); }
+        .insta-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(64,93,230,0.45), rgba(225,48,108,0.42));
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: var(--transition);
+        }
+        .insta-item:hover .insta-overlay { opacity: 1; }
+        .insta-stats {
+            color: var(--white);
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        .insta-stats i { margin: 0 7px; font-size: 1.3em; }
+
+        /* ======= STATISTICS ======= */
+        .stats {
+            background: linear-gradient(120deg, var(--primary), var(--accent));
+            color: var(--white);
+        }
+        .stats-container {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: stretch;
+        }
+        .stat-item {
+            background: rgba(255,255,255,0.12);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            min-width: 170px;
+            margin-bottom: 1.5rem;
+            flex: 1 1 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .stat-number {
+            font-size: 2.7rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+        .stat-text { font-size: 1.15rem; margin-top: .7rem; font-weight: 600; }
+
+        /* ======= CONTACT ======= */
+        .contact-content {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .contact-info {
+            flex: 1.1;
+            font-size: 1.1rem;
+        }
+        .contact-form {
+            flex: 1;
+            background: var(--white);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            padding: 2rem 1.5rem;
+        }
+        .form-group { margin-bottom: 1.7rem; }
+        .form-control {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border-radius: 6px;
+            border: 1px solid #dde1e6;
+            font-size: 1rem;
+            background: #f7f8fa;
+            transition: border-color .2s;
+        }
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(64,93,230,0.13);
+        }
+        textarea.form-control { min-height: 120px; resize: vertical; }
+        .btn[type="submit"] { width: 100%; margin-top: .5rem; }
+
+        /* ======= FOOTER ======= */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        .footer-content {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-column {
+            min-width: 220px;
+            flex: 1;
+            margin-bottom: 30px;
+        }
+        .footer-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 19px;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 36px; height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { transition: color .2s; }
+        .footer-links a:hover { color: var(--accent); }
+        .social-links {
+            display: flex; gap: 13px;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center; justify-content: center;
+            width: 38px; height: 38px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            color: var(--white);
+            transition: background .2s, transform .2s;
+            font-size: 1.25rem;
+        }
+        .social-links a:hover {
+            background: var(--accent);
+            transform: scale(1.08);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 1rem;
+            color: #bbb;
+        }
+
+        /* ======= RESPONSIVE ======= */
+        @media (max-width: 1000px) {
+            .hero-title { font-size: 2.4rem; }
+            .about-content, .contact-content, .stats-container, .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+        @media (max-width: 700px) {
+            header .header-container { flex-direction: row; }
+            .nav-links {
+                position: fixed; top: 70px; left: -100vw;
+                width: 100vw; height: calc(100vh - 70px);
+                background: rgba(255,255,255,0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: left .3s;
+            }
+            .nav-links.active { left: 0; }
+            .mobile-toggle { display: block; }
+        }
+        @media (max-width: 450px) {
+            .container { padding: 0 .6rem; }
+            .hero-title { font-size: 1.25rem; }
+            .section-title { font-size: 1.25rem; }
+            .stat-item { padding: 1.3rem .8rem; }
+            .footer-title { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">roorkee<span>360</span></a>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#instagram">Gallery</a></li>
+                <li><a href="#stats">Stats</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1 class="hero-title">Discover Roorkee Through <span>Our Lens</span></h1>
+            <p class="hero-subtitle">Welcome to Roorkee360, your visual journey through the beautiful landscapes, culture, and daily life of Roorkee. Follow our Instagram for the latest updates!</p>
+            <div class="hero-buttons">
+                <a href="https://www.instagram.com/roorkee08" target="_blank" class="btn btn-instagram"><i class="fab fa-instagram"></i> Follow @roorkee08</a>
+                <a href="#instagram" class="btn"><i class="fas fa-image"></i> View Gallery</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Roorkee360</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Roorkee360 is a visual storytelling project dedicated to capturing the essence of Roorkee—the people, places, and unique culture. Through our Instagram @roorkee08, we share moments that define this beautiful city.</p>
+                    <p>Our mission: to showcase Roorkee's charm, from historical architecture to natural beauty and vibrant urban life.</p>
+                    <p>Join our journey documenting the many facets of this wonderful city, one photo at a time.</p>
+                    <a href="https://www.instagram.com/roorkee08" target="_blank" class="btn" style="margin-top: 20px;"><i class="fab fa-instagram"></i> Follow Us</a>
+                </div>
+                <div class="about-image">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='350' viewBox='0 0 500 350'><rect width='500' height='350' fill='%23f5f5f5'/><text x='250' y='175' font-family='Arial' font-size='20' fill='%23333' text-anchor='middle'>Roorkee360 Visual Story</text></svg>" alt="About Roorkee360">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Section -->
+    <section class="section instagram" id="instagram">
+        <div class="container">
+            <h2 class="section-title">Instagram Gallery</h2>
+            <p style="text-align: center; margin-bottom: 40px;">Explore our latest Instagram posts showcasing the beauty of Roorkee</p>
+            <div class="instagram-feed">
+                <!-- Instagram posts -->
+                <div class="insta-item">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'><rect width='300' height='250' fill='%23e6e6e6'/><text x='150' y='125' font-family='Arial' font-size='16' fill='%23555' text-anchor='middle'>Roorkee Landscape</text></svg>" alt="Instagram Post">
+                    <div class="insta-overlay"><div class="insta-stats"><p><i class="fas fa-heart"></i> 245</p><p><i class="fas fa-comment"></i> 32</p></div></div>
+                </div>
+                <div class="insta-item">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'><rect width='300' height='250' fill='%23e6e6e6'/><text x='150' y='125' font-family='Arial' font-size='16' fill='%23555' text-anchor='middle'>City Architecture</text></svg>" alt="Instagram Post">
+                    <div class="insta-overlay"><div class="insta-stats"><p><i class="fas fa-heart"></i> 189</p><p><i class="fas fa-comment"></i> 24</p></div></div>
+                </div>
+                <div class="insta-item">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'><rect width='300' height='250' fill='%23e6e6e6'/><text x='150' y='125' font-family='Arial' font-size='16' fill='%23555' text-anchor='middle'>Local Culture</text></svg>" alt="Instagram Post">
+                    <div class="insta-overlay"><div class="insta-stats"><p><i class="fas fa-heart"></i> 312</p><p><i class="fas fa-comment"></i> 41</p></div></div>
+                </div>
+                <div class="insta-item">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'><rect width='300' height='250' fill='%23e6e6e6'/><text x='150' y='125' font-family='Arial' font-size='16' fill='%23555' text-anchor='middle'>Street Food</text></svg>" alt="Instagram Post">
+                    <div class="insta-overlay"><div class="insta-stats"><p><i class="fas fa-heart"></i> 427</p><p><i class="fas fa-comment"></i> 63</p></div></div>
+                </div>
+                <div class="insta-item">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'><rect width='300' height='250' fill='%23e6e6e6'/><text x='150' y='125' font-family='Arial' font-size='16' fill='%23555' text-anchor='middle'>Nature Beauty</text></svg>" alt="Instagram Post">
+                    <div class="insta-overlay"><div class="insta-stats"><p><i class="fas fa-heart"></i> 356</p><p><i class="fas fa-comment"></i> 29</p></div></div>
+                </div>
+                <div class="insta-item">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'><rect width='300' height='250' fill='%23e6e6e6'/><text x='150' y='125' font-family='Arial' font-size='16' fill='%23555' text-anchor='middle'>Urban Life</text></svg>" alt="Instagram Post">
+                    <div class="insta-overlay"><div class="insta-stats"><p><i class="fas fa-heart"></i> 278</p><p><i class="fas fa-comment"></i> 37</p></div></div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://www.instagram.com/roorkee08" target="_blank" class="btn btn-instagram"><i class="fab fa-instagram"></i> View More on Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="section stats" id="stats">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Our Instagram Stats</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number" id="followers">5.2K</div>
+                    <div class="stat-text">Followers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="posts">328</div>
+                    <div class="stat-text">Posts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="engagement">12.8%</div>
+                    <div class="stat-text">Engagement Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="likes">42.5K</div>
+                    <div class="stat-text">Total Likes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p>Have questions, suggestions, or collaboration ideas? We'd love to hear from you!</p>
+                    <p>Reach out through the form or connect with us on social media.</p>
+                    <div style="margin-top: 30px;">
+                        <h3 style="font-weight:700;">Connect With Us</h3>
+                        <div class="social-links" style="margin-top: 15px;">
+                            <a href="https://www.instagram.com/roorkee08" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">roorkee<span>360</span></h3>
+                    <p>Capturing the essence of Roorkee through visual storytelling.<br>Follow our journey on Instagram.</p>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#instagram">Gallery</a></li>
+                        <li><a href="#stats">Stats</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/roorkee08" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Roorkee360. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- UI Interactions -->
+    <script>
+        // Sticky Header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+        // Mobile Navigation
+        document.getElementById('mobile-toggle').addEventListener('click', function() {
+            const nav = document.getElementById('nav-links');
+            nav.classList.toggle('active');
+            this.innerHTML = nav.classList.contains('active')
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#' || !document.querySelector(targetId)) return;
+                e.preventDefault();
+                document.getElementById('nav-links').classList.remove('active');
+                document.getElementById('mobile-toggle').innerHTML = '<i class="fas fa-bars"></i>';
+                window.scrollTo({ top: document.querySelector(targetId).offsetTop - 80, behavior: 'smooth' });
+                document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        // Contact Form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+        // Animate Statistics
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                let val = Math.floor(progress * (end - start) + start);
+                obj.innerHTML = id === "engagement" ? (val/10).toFixed(1) + '%' : val.toLocaleString();
+                if (progress < 1) window.requestAnimationFrame(step);
+                else obj.innerHTML = id === "followers" ? "5.2K"
+                    : id === "posts" ? "328"
+                    : id === "engagement" ? "12.8%"
+                    : id === "likes" ? "42.5K"
+                    : obj.innerHTML;
+            };
+            window.requestAnimationFrame(step);
+        }
+        // Animate stats when in viewport
+        let statsAnimated = false;
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return rect.top < window.innerHeight && rect.bottom > 0;
+        }
+        function checkStatsAnimation() {
+            const statsSection = document.getElementById('stats');
+            if (isInViewport(statsSection) && !statsAnimated) {
+                animateValue('followers', 0, 5200, 2000);
+                animateValue('posts', 0, 328, 1500);
+                animateValue('engagement', 0, 128, 1500);
+                animateValue('likes', 0, 42500, 2500);
+                statsAnimated = true;
+            }
+        }
+        window.addEventListener('scroll', checkStatsAnimation);
+        window.addEventListener('load', checkStatsAnimation);
+    </script>
+</body>
+</html>
